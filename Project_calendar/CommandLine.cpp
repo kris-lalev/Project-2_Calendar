@@ -42,23 +42,22 @@ void CommandLine::copy_apps_from_file(String& file_name)
 	{
 		int len_name = strlen(copy_apps.at(i).get_name());
 		int len_note = strlen(copy_apps.at(i).get_note());
-		file << copy_apps.at(i).get_date().get_day();
-		file << '|';
-		file << copy_apps.at(i).get_date().get_mounth();
-		file << '|';
 		file << copy_apps.at(i).get_date().get_year();
-		file << '|';
-		file << copy_apps.at(i).get_stime().get_hours();
-		file << '|';
-		file << copy_apps.at(i).get_stime().get_minutes();
-		file << '|';
-		file << copy_apps.at(i).get_etime().get_hours();
-		file << '|';
-		file << copy_apps.at(i).get_etime().get_minutes();
-		file << '|';
+		file << '-';
+		file << copy_apps.at(i).get_date().get_mounth();
+		file << '-';
 		file << copy_apps.at(i).get_date().get_day();
-		file << '|';
+		file << ' ';
+		file << copy_apps.at(i).get_stime().get_hours();
+		file << ':';
+		file << copy_apps.at(i).get_stime().get_minutes();
+		file << ' ';
+		file << copy_apps.at(i).get_etime().get_hours();
+		file << ':';
+		file << copy_apps.at(i).get_etime().get_minutes();
+		file << ' ';
 		file.write(copy_apps.at(i).get_name(),len_name );
+		file << ' ';
 		file.write(copy_apps.at(i).get_note(), len_note);
 		file << '\n';
 	}
@@ -77,16 +76,10 @@ void CommandLine::read_from_file(std::ifstream& file)
 	file.open(file_name.get_str());
 
 	char ch = 'a';
-	int curr_row = 1;
-	int curr_col = 1;
-
 	String empty_str;
-	
-
 	String temp_str;
-	
+	int item = 1;
 
-	bool is_empty = true;
 
 	while (true)
 	{
@@ -96,33 +89,17 @@ void CommandLine::read_from_file(std::ifstream& file)
 			break;
 		if (ch == '\n')
 		{
-			if (!is_empty)
-			{
-	
-			}
-
-			curr_row++;
-			curr_col = 1;
-
+			temp_str.print();
+			std::cout << std::endl;
+			calendar.add_app(temp_str);
 			temp_str = empty_str;
-	
-
-			is_empty = true;
 		}
 
-		else if (ch != ',')
+		else 
 		{
 			temp_str.push_back(ch);
-			is_empty = false;
 		}
-		else if (ch == ',')
-		{
-
-			curr_col++;
-
-			temp_str = empty_str;
-
-		}
+		
 	}
 
 }
@@ -194,7 +171,7 @@ void CommandLine::open()
 
 			file.close();
 
-			//read_from_file(file);
+			read_from_file(file);
 
 			while (true)
 			{
