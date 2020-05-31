@@ -1,0 +1,8 @@
+open test2.txt
+book 2020-05-24 12:30 13:30 doc I do not know
+book 2020-05-24 14:30 15:30 doc2 Go to concert
+book 2020-05-25 11:30 17:30 doc Hasan qde
+book 2020-05-25 18:30 19:30 doc2 Ivan
+book 2020-05-26 12:48 13:38 doc Mental
+book 2020-05-26 14:48 15:38 doc2 Dental
+findslotwith 2020-05-26 12 nz.txt
