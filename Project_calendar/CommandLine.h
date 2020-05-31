@@ -43,6 +43,8 @@ public:
 	void find();
 	void holiday();
 	void findslot();
+	void findslotwith();
+	void merge();
 	void busydays();
 	void save(String& file_name);
 	void saveas();

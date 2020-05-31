@@ -21,9 +21,6 @@
     <ClCompile Include="String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Calendar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Appointment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

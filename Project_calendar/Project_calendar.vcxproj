@@ -148,7 +148,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Appointment.cpp" />
-    <ClCompile Include="Calendar.cpp" />
     <ClCompile Include="CommandLine.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Project_calendar.cpp" />

@@ -78,7 +78,6 @@ void CommandLine::read_from_file(std::ifstream& file)
 	char ch = 'a';
 	String empty_str;
 	String temp_str;
-	int item = 1;
 
 
 	while (true)
@@ -196,7 +195,7 @@ void CommandLine::open()
 
 				else if (strcmp(command, "exit") == 0)
 				{
-					//exit();
+					exit();
 					return;
 				}
 
@@ -214,9 +213,12 @@ void CommandLine::open()
 					find();
 				else if (strcmp(command, "holiday") == 0)
 					holiday();
-				else if (strcmp(command, "findslot") == 0);
-				else if (strcmp(command, "findslotwith") == 0);
-				else if (strcmp(command, "merge") == 0);
+				else if (strcmp(command, "findslot") == 0)
+					findslot();
+				else if (strcmp(command, "findslotwith") == 0)
+					findslotwith();
+				else if (strcmp(command, "merge") == 0)
+					merge();
 				else if (strcmp(command, "busydays") == 0)
 					busydays();
 					
@@ -253,11 +255,11 @@ void CommandLine::unbook() {
 	}
 	unbook_info.push_back(' ');
 	unbook_info.push_back('a');
-	unbook_info.push_back('a ');
+	unbook_info.push_back('a');
 	unbook_info.push_back(' ');
 	unbook_info.push_back(' ');
 	unbook_info.push_back('a');
-	unbook_info.push_back('a ');
+	unbook_info.push_back('a');
 	unbook_info.push_back('\n');
 	app.set_appointment(unbook_info);
 	calendar.rem_app(app);
@@ -331,3 +333,70 @@ void CommandLine::busydays() {
 	to_date.set_date_str(to.get_str());
 	calendar.busydays(date, to_date);
 }
+
+void CommandLine::merge() {
+	std::ifstream file;
+	String from;
+	char ch = 'a';
+	String empty_str;
+	String temp_str;
+	set_name(from);
+	file.open(from.get_str());
+
+	std::cout << from.get_str();
+
+	if (file.fail())
+	{
+		new_file();
+
+		file.open(from.get_str());
+	}
+	else
+		std::cout << "Successfully opened " << from.get_str() << std::endl;
+
+	while (true)
+	{
+		file.get(ch);
+
+		if (file.eof())
+			break;
+		if (ch == '\n')
+		{
+			temp_str.print();
+			std::cout << std::endl;
+			calendar.add_app(temp_str);
+			temp_str = empty_str;
+		}
+
+		else
+		{
+			temp_str.push_back(ch);
+		}
+	}
+	file.close();
+}
+
+void CommandLine::findslot() {
+	String from;
+	Date to_date;
+	int hrs;
+	set_name_space(from);
+	std::cin >> hrs;
+	to_date.set_date_str(from.get_str());
+	calendar.findslot(to_date, hrs);
+
+}
+
+void CommandLine::findslotwith() {
+	String from;
+	Date to_date;
+	int hrs;
+	set_name_space(from);
+	std::cin >> hrs;
+	std::cin.ignore();
+	merge();
+	to_date.set_date_str(from.get_str());
+	calendar.findslot(to_date, hrs);
+
+}
+

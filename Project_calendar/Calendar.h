@@ -24,6 +24,7 @@ public:
 			}
 		}
 	}
+
 	void add_app(String& str) {
 		Appointment new_app;
 		if (new_app.set_appointment(str))
@@ -137,6 +138,7 @@ public:
 				return true;
 			}
 		}
+		return false;
 	}
 
 	void add_holiday(Date& date) {
@@ -207,5 +209,51 @@ public:
 		}
 	}
 
+	bool findslot(Date& date, int hours) const {
+		Vector<Appointment> apps_on_date;
+		Vector<Appointment> empty;
+		Date biggest_date = appointments.at(0).get_date();
+		Time after(8,0);
+		Time before(17,0);
+		for (int k = 0; k < appointments.size(); k++)
+		{
+			if (appointments.at(k).get_date() > biggest_date)
+			{
+				biggest_date = appointments.at(k).get_date();
+			}
+		}
+		while(biggest_date > date)
+		{
+			apps_on_date = empty;
+			for (int k = 0; k < appointments.size(); k++)
+			{
+				if (appointments.at(k).get_date() == date)
+				{
+					apps_on_date.push_back(appointments.at(k));
+				}
+			}
+			for (int j = 0; j < apps_on_date.size(); j++)
+			{
+				for (int l = 0; l < apps_on_date.size(); l++)
+				{
+					if (diff_time(apps_on_date.at(l).get_stime(), apps_on_date.at(l).get_etime()) > hours*60)
+					{
+						if (apps_on_date.at(l).get_stime() > after && before > apps_on_date.at(l).get_etime()) {
+							std::cout << "There is a free space between:\n";
+							apps_on_date.at(l).print();
+							std::cout << "And\n";
+							apps_on_date.at(l).print();
+							return true;
+						}
+					}
+				}
+			}
+			date.next_date();
+		}
+		std::cout << "There is no free space between appointments. Next free date is:\n";
+		date.next_date();
+		date.print();
+		return false;
+	}
 };
 

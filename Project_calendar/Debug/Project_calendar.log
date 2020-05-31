@@ -1,7 +1,2 @@
 ﻿  CommandLine.cpp
-C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Project_calendar\CommandLine.cpp(255,28): warning C4305: 'argument': truncation from 'int' to 'char'
-C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Project_calendar\CommandLine.cpp(255,24): warning C4309: 'argument': truncation of constant value
-C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Project_calendar\CommandLine.cpp(259,28): warning C4305: 'argument': truncation from 'int' to 'char'
-C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Project_calendar\CommandLine.cpp(259,24): warning C4309: 'argument': truncation of constant value
-C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Project_calendar\Calendar.h(140): warning C4715: 'Calendar::is_holiday': not all control paths return a value
   Project_calendar.vcxproj -> C:\Users\Kris_2020\source\repos\Project_calendar\Project-2_Calendar\Debug\Project_calendar.exe

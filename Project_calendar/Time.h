@@ -21,4 +21,4 @@ public:
 };
 
 int Compare(const Time& first, const Time& second);
-int diff_time(Time& first, Time& second);
+int diff_time(Time first, Time second);
